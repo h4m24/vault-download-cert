@@ -12,6 +12,7 @@ def vault_is_up(address, cafile):
     try:
         status = requests.get(vault_url, verify=cafile)
     except Exception as e:
+        logging.error("error checking vault machine health")
         logging.error(e)
     if status.status_code == 200 or status.status_code == 429:
         return True
